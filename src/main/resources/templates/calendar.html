@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang='en' xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset='utf-8' />
+    <meta name="'viewport" content=""width=device-width, initial-scale="1.0" >
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="../static/css/calendar.css">
+    <link rel="stylesheet" th:href="@{/css/calendar.css}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous">
+    </script>
+  </head>
+  <body>
+      <div id="nav">
+        <ul style="padding-left: 30px; margin-top: 0;">
+            <li class="nav-element" style="float: left; padding-left: 0px;">
+                <img th:src="@{/img/logo.jpg}" alt="" style="height: 80px; width: 80px;">
+            </li>
+            <li class="nav-element nav-li">
+                <a class="nav-text" href="/">Home</a>
+            </li>
+            <li class="nav-element nav-li">
+                <a class="nav-text" href="/logout">Log out</a>
+            </li>
+        </ul>
+      </div>
+
+    <!--container that contains most of the components, except for modules-->
+        <div id="container" style="margin-top: 80px;">
+            <div id="header">
+                <div id="monthDisplay"></div>
+                <div>
+                    <button id="backButton">Back</button>
+                    <button id="nextButton">Next</button>
+                </div>
+            </div>
+            <div id="weekdays">
+                <div>Sunday</div>
+                <div>Monday</div>
+                <div>Tuesday</div>
+                <div>Wednesday</div>
+                <div>Thursday</div>
+                <div>Friday</div>
+                <div>Saturday</div>
+            </div>
+
+            <div id="calendar"></div>
+        </div>
+
+        <div id="newEventModal">
+            <form id="addTaskForm" th:action="@{/calendar/addTask}" method="post">
+                <h2>New Task</h2>
+                <input class="inputs" id="eventTitleInput" name="name" required placeholder="Title">
+                <textarea class="inputs" name="description" id="eventDescriptionInput" rows="8" cols="60"></textarea>
+                <select class="inputs" id="eventTypeInput" name="type">
+                    <option value="revision">revision</option>
+                    <option value="assessment">assessment</option>
+                </select>
+
+                <button type="submit" id="saveButton">Save</button>
+            </form>
+            <button id="cancelButton">Cancel</button>
+        </div>
+
+        <div id="deleteEventModal">
+            <h2>Event</h2>
+            <p id="eventText"></p>
+            <button id="deleteButton">Delete</button>
+            <button id="closeButton">Close</button>
+        </div>
+
+        <div id = "displayModal">
+
+        </div>
+
+        <div id="taskDetailModal">
+            
+            <form id="taskDetailForm" method="post">
+                <input class="task-detail-field" id="taskDetailTitle" name="name">Hello</input>
+                <textarea class="task-detail-field" id="taskDetailDescription" name="description" rows="8" cols="60">Hello</textarea>
+                <!-- <select class="task-detail-field" id="taskDetailType" name="type">
+                    <option value="revision">revision</option>
+                    <option value="assessment">assessment</option>
+                </select> -->
+
+                <button type="submit" name="button" style="background-color: green">Save Changes</button>
+            </form>
+
+            <button id="detailCloseButton" style="background-color: red">Close</button>
+        </div>
+
+
+        <script src="../static/js/calendar.js"></script>
+        <script th:src="@{/js/calendar.js}" th:inline="javascript"></script>
+        <!-- <script th:src="@{/js/ajaxGetTasks.js}" th:inline="javascript"></script> -->
+        <script type="text/javascript" th:inline="javascript">
+            function displayDetail(taskId) {
+
+                ajaxTaskDetailEventListener(taskId);
+            }
+
+            function test(string) {alert("fuck off");}
+
+            GET: $(document).ready(ajaxTaskEventListener());
+
+            document.getElementById("backButton").addEventListener("click", function(){
+                $(document).ready(ajaxTaskEventListener());
+            });
+            document.getElementById("nextButton").addEventListener("click", function(){
+                $(document).ready(ajaxTaskEventListener());
+            });
+
+            function ajaxTaskDetailEventListener(taskId) {
+                console.log("detail listener working");
+                ajaxGetTaskDetail(taskId);
+
+                function ajaxGetTaskDetail(taskId) {
+                    $.ajax({
+                        type: "GET",
+                        url: "/calendar/displayDetail/" + taskId,
+                        success : function(result) {
+                            console.log("result function running")
+                            // display task detail onto #taskDetailModal
+                            if (result.status == "success") {
+                                var task = result.data;
+                                console.log(task.name);
+                                $('#taskDetailTitle').val(task.name);
+                                $('#taskDetailDescription').text(task.description);
+                                // if (task.type == 0) {
+                                //     $("#taskDetailType").val("revision").change();
+                                // } else {
+                                //     $("#taskDetailType").val("assessment").change();
+                                // }
+
+                                document.getElementById("taskDetailForm").setAttribute("action", "/calendar/edit/"+task.id);
+
+                                const taskDetailModal = document.getElementById("taskDetailModal");
+                                taskDetailModal.style.display = "block";
+                            }
+                            else {
+                                $("#taskDetailModal").html("<strong>Error</strong>");
+                                document.getElementById("taskDetailModal").style.display = "block";
+                            }
+                        },
+                        error : function(e) {
+                            $("#taskDetailModal").html("<strong>Error</strong>");
+                            console.log("ERROR: ", e);
+                            document.getElementById("taskDetailModal").style.display = "block";
+                        }
+                    });
+                }
+            }
+
+            function ajaxTaskEventListener() {
+                // GET REQUEST
+                $(".displayTasksBtn").each(function(){
+                    this.addEventListener("click", function(event) {
+                        event.preventDefault();
+                        var date = this.name;
+                        ajaxGetTask(date);
+                    });
+                });
+
+
+                // DO GET
+                function ajaxGetTask(date) {
+                    $.ajax({
+                        type : "GET",
+                        url : "/calendar/" + date,
+                        success : function(result) {
+                            if (result.status == "success") {
+
+                                $('#displayModal').empty();
+                                var taskFor = document.createElement("h2");
+                                taskFor.innerText = "Task for " + date;
+                                taskFor.setAttribute("style", "font-size: 25px");
+                                document.getElementById("displayModal").append(taskFor);
+
+                                $.each(result.data, function(i, task) {
+                                    constructDisplayModalLists(i, task, result);
+                                });
+                                console.log("Success: ", result);
+                            }
+                            else {
+                                $("#displayModal").html("<strong>Error</strong>");
+                                console.log("Fail: ", result);
+                            }
+                        },
+
+                        error : function(e) {
+                            $("#displayModal").html("<strong>Error</strong>");
+                            console.log("ERROR: ", e);
+                        }
+                    });
+                }
+
+                function constructDisplayModalLists(i, task, result) {
+                    var displayModalList = document.createElement("div");
+                    displayModalList.setAttribute("class", "displayModalList");
+
+                    isCompleteInt = result.isCompleteList[i];
+                    if (isCompleteInt == 1) {
+                        displayModalList.setAttribute("style", "background-color: green");
+                    } else {
+                        displayModalList.setAttribute("style", "background-color: #C4C4C4");
+                    }
+
+                        var innerDiv = document.createElement("div");
+                            var taskNameAnchor = document.createElement("a");
+                                taskNameAnchor.setAttribute("style", "display: inline-block");
+                                taskNameAnchor.setAttribute("id", task.id);
+                                taskNameAnchor.setAttribute("value", task.description);
+                                taskNameAnchor.innerHTML = task.name;
+                        innerDiv.appendChild(taskNameAnchor);
+
+                            var taskEditDiv = document.createElement("div");
+                            taskEditDiv.setAttribute("style", "margin-top: 10px");
+                                // var editAnchor = document.createElement("a");
+                                //     editAnchor.setAttribute("class", "task-edit-anchor");
+                                //     editAnchor.setAttribute("href", "/calendar/edit/"+task.id);
+                                //     editAnchor.innerHTML = "Edit";
+                                // taskEditDiv.appendChild(editAnchor);
+
+                                var deleteAnchor = document.createElement("a");
+                                    deleteAnchor.setAttribute("class", "task-edit-anchor");
+                                    deleteAnchor.setAttribute("href", "/calendar/delete/"+task.id);
+                                    deleteAnchor.innerHTML = "Delete";
+                                taskEditDiv.appendChild(deleteAnchor);
+
+                                    if (isCompleteInt == 1) {
+                                        var isComplete = "true";
+                                    } else {
+                                        var isComplete = "false";
+                                    }
+
+                                var completeAnchor = document.createElement("a");
+                                    completeAnchor.setAttribute("class", "task-edit-anchor");
+                                    completeAnchor.setAttribute("href", "/calendar/complete/"+task.id+"/"+isComplete);
+                                    completeAnchor.innerHTML = "Complete";
+                                taskEditDiv.appendChild(completeAnchor);
+
+                                var detailButton = document.createElement("button");
+                                    detailButton.innerHTML = "Detail";
+                                    // var onclickString = "displayDetail(" + task.id + ")";
+                                    // detailButton.setAttribute("onclick", test("lol"));
+                                    detailButton.setAttribute("class", "detail-button");
+                                    detailButton.setAttribute("style", "color: black");
+                                    detailButton.addEventListener("click", function(event){
+                                        event.preventDefault();
+                                        displayDetail(task.id);
+                                    });
+                                taskEditDiv.appendChild(detailButton);
+
+                        innerDiv.appendChild(taskEditDiv);
+                    displayModalList.appendChild(innerDiv);
+
+                        // var buttonDiv = document.createElement("div");
+                        //
+                        //     buttonDiv.appendChild(detailButton);
+
+                    // displayModalList.appendChild(buttonDiv);
+
+                    $('#displayModal').append(displayModalList);
+                }
+            }
+
+
+
+        </script>
+  </body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <meta charset="utf-8">
+        <title>Log in</title>
+        <!-- <link rel="stylesheet" href="../static/css/login.css"> -->
+        <style media="screen">
+            body {
+                height: 100%;
+                margin: 0;
+            }
+
+            .form-div {
+                display: block;
+                height: 500px;
+
+            }
+
+            .login-form {
+                display: block;
+                height: 60%;
+                width: 10%;
+                margin: auto;
+                padding: 5%;
+                padding-top: 1%;
+
+                background-color: #E4E4E4;
+                text-align: center;
+            }
+
+            input {
+                border-radius: 25px;
+                background-color: #BBC0C6;
+                color: white;
+                display: block;
+                margin: auto;
+                width: 100%;
+                margin-top: 20%;
+                font-size: 20px;
+                border: none;
+            }
+
+            button {
+                background-color: #BBC0C6;
+                border: none;
+                border-radius: 25px;
+                margin-top: 20%;
+                padding: 5%;
+                width: 100%;
+                font-size: 20px;
+            }
+
+            #login-header {
+                background-color: #C4C4C4;
+                height: 50px;
+                width: 100%;
+                margin-bottom: 10%;
+            }
+            .logo {
+                background-color: #C4C4C4;
+                font-size: 30px;
+                padding: 10px;
+                position: absolute;
+                top: 22%;
+                margin-left: 45%;
+                width: 10%;
+                text-align: center;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="login-header">
+
+        </div>
+
+        <div class="form-div">
+            <div class="logo">
+                <label>EduHub</label>
+            </div>
+            <form class="login-form" name="login-page" th:action="@{/login}" method="post">
+                <div th:if="${param.error}" class="alert alert-error">
+                    Invalid username and password.
+                </div>
+                <div th:if="${param.logout}" class="alert alert-success">
+                    You have logged out
+                </div>
+                <input type="text" id="email" name="email" value="" th:placeholder="email">
+                <input type="password" id="password" name="password" value="" th:placeholder="password">
+                <button type="submit" name="submit" value="submit">log in</button>
+            </form>
+        </div>
+
+    </body>
+</html>
