@@ -123,6 +123,9 @@ body {
       display: inline-block;
       float: left;
       border-radius: 10px;
+      background-color: #09CFBB;
+      width: 100px;
+      margin-right: 40px
   }
 
   .task-detail-field {
