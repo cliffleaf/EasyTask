@@ -35,7 +35,7 @@ function load(){
     });
 
     //console.log(dateString);
-    const paddingDays = weekdays.indexOf(dateString.split(" ")[0]);
+    const paddingDays = weekdays.indexOf(dateString.split(" ")[0])+1;
 
      document.getElementById("monthDisplay").innerText =
      `${dt.toLocaleDateString("en-nz",{month:"long"})} ${year}`
