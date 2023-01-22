@@ -1,6 +1,6 @@
 package com.app.calendar.web;
 
-import com.app.calendar.service.UserService;
+import com.app.calendar.user.UserService;
 import com.app.calendar.web.dto.UserRegistrationDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;

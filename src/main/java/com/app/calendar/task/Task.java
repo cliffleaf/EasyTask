@@ -1,4 +1,4 @@
-package com.app.calendar.model;
+package com.app.calendar.task;
 
 import lombok.NoArgsConstructor;
 

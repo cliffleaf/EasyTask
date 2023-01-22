@@ -1,8 +1,7 @@
-package com.app.calendar.service;
+package com.app.calendar.task;
 
-import com.app.calendar.model.Task;
-import com.app.calendar.model.User;
-import com.app.calendar.repository.TaskRepository;
+import com.app.calendar.user.UserServiceImpl;
+import com.app.calendar.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

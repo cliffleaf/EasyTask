@@ -1,7 +1,7 @@
 package com.app.calendar.web;
 
-import com.app.calendar.model.Task;
-import com.app.calendar.model.User;
+import com.app.calendar.task.Task;
+import com.app.calendar.user.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,4 +1,4 @@
-package com.app.calendar.model;
+package com.app.calendar.role;
 
 import javax.persistence.*;
 

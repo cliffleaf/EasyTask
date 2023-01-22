@@ -1,6 +1,6 @@
-package com.app.calendar.service;
+package com.app.calendar.user;
 
-import com.app.calendar.model.User;
+import com.app.calendar.user.User;
 import com.app.calendar.web.dto.UserRegistrationDto;
 import org.springframework.security.core.userdetails.UserDetailsService;
 

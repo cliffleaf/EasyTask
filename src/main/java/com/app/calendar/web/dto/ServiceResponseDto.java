@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class ServiceResponse<T> {
+public class ServiceResponseDto<T> {
     private String status;
     private T data;
     private List<Integer> isCompleteList;

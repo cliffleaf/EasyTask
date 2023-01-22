@@ -1,8 +1,6 @@
-package com.app.calendar.controller;
+package com.app.calendar.task;
 
-import com.app.calendar.model.Task;
-import com.app.calendar.service.TaskService;
-import com.app.calendar.web.dto.ServiceResponse;
+import com.app.calendar.web.dto.ServiceResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,14 +35,14 @@ public class TaskController {
             else
                 isCompleteList.add(0);
         }
-        ServiceResponse<List<Task>> list = new ServiceResponse<>("success", taskList, isCompleteList);
+        ServiceResponseDto<List<Task>> list = new ServiceResponseDto<>("success", taskList, isCompleteList);
         return new ResponseEntity<Object>(list, HttpStatus.OK);
     }
 
     @GetMapping("/calendar/displayDetail/{taskId}")
     public ResponseEntity<Object> displayDetail(@PathVariable("taskId") long id) {
         Task task = taskService.getTask(id);
-        ServiceResponse<Task> t = new ServiceResponse<>("success", task, null);
+        ServiceResponseDto<Task> t = new ServiceResponseDto<>("success", task, null);
         return new ResponseEntity<Object>(t, HttpStatus.OK);
     }
 

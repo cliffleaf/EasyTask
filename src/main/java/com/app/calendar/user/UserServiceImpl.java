@@ -1,8 +1,6 @@
-package com.app.calendar.service;
+package com.app.calendar.user;
 
-import com.app.calendar.model.Role;
-import com.app.calendar.model.User;
-import com.app.calendar.repository.UserRepository;
+import com.app.calendar.role.Role;
 import com.app.calendar.web.dto.UserRegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -18,7 +16,7 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
 

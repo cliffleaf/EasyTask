@@ -1,4 +1,6 @@
-package com.app.calendar.model;
+package com.app.calendar.user;
+
+import com.app.calendar.role.Role;
 
 import java.util.Collection;
 

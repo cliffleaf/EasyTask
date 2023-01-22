@@ -1,6 +1,6 @@
-package com.app.calendar.Config;
+package com.app.calendar.config;
 
-import com.app.calendar.service.UserService;
+import com.app.calendar.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
