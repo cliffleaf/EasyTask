@@ -1,8 +1,8 @@
-package com.example.fuck.controller;
+package com.app.calendar.controller;
 
-import com.example.fuck.model.Task;
-import com.example.fuck.service.TaskService;
-import com.example.fuck.web.dto.ServiceResponse;
+import com.app.calendar.model.Task;
+import com.app.calendar.service.TaskService;
+import com.app.calendar.web.dto.ServiceResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

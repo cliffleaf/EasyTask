@@ -1,4 +1,4 @@
-package com.example.fuck.model;
+package com.app.calendar.model;
 
 import javax.persistence.*;
 

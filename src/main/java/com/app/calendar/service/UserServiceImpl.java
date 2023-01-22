@@ -1,15 +1,13 @@
-package com.example.fuck.service;
+package com.app.calendar.service;
 
-import com.example.fuck.model.Role;
-import com.example.fuck.model.User;
-import com.example.fuck.repository.UserRepository;
-import com.example.fuck.web.dto.UserRegistrationDto;
+import com.app.calendar.model.Role;
+import com.app.calendar.model.User;
+import com.app.calendar.repository.UserRepository;
+import com.app.calendar.web.dto.UserRegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

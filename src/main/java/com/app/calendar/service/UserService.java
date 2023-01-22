@@ -1,7 +1,7 @@
-package com.example.fuck.service;
+package com.app.calendar.service;
 
-import com.example.fuck.model.User;
-import com.example.fuck.web.dto.UserRegistrationDto;
+import com.app.calendar.model.User;
+import com.app.calendar.web.dto.UserRegistrationDto;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface UserService extends UserDetailsService {

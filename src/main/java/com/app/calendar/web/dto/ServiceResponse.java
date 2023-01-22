@@ -1,4 +1,4 @@
-package com.example.fuck.web.dto;
+package com.app.calendar.web.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

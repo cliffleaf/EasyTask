@@ -1,9 +1,8 @@
-package com.example.fuck.web;
+package com.app.calendar.web;
 
-import com.example.fuck.service.UserService;
-import com.example.fuck.web.dto.UserRegistrationDto;
+import com.app.calendar.service.UserService;
+import com.app.calendar.web.dto.UserRegistrationDto;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,6 +1,6 @@
-package com.example.fuck.Config;
+package com.app.calendar.Config;
 
-import com.example.fuck.service.UserService;
+import com.app.calendar.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

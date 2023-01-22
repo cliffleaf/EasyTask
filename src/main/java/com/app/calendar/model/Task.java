@@ -1,6 +1,5 @@
-package com.example.fuck.model;
+package com.app.calendar.model;
 
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;

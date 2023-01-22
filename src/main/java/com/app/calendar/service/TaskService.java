@@ -1,11 +1,9 @@
-package com.example.fuck.service;
+package com.app.calendar.service;
 
-import com.example.fuck.model.Task;
-import com.example.fuck.model.User;
-import com.example.fuck.repository.TaskRepository;
+import com.app.calendar.model.Task;
+import com.app.calendar.model.User;
+import com.app.calendar.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

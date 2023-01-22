@@ -1,11 +1,10 @@
-package com.example.fuck.web;
+package com.app.calendar.web;
 
-import com.example.fuck.model.Task;
-import com.example.fuck.model.User;
+import com.app.calendar.model.Task;
+import com.app.calendar.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller

@@ -1,9 +1,9 @@
-package com.example.fuck.repository;
+package com.app.calendar.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.fuck.model.User;
+import com.app.calendar.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{

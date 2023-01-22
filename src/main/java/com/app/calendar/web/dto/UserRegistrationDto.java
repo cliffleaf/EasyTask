@@ -1,4 +1,4 @@
-package com.example.fuck.web.dto;
+package com.app.calendar.web.dto;
 
 public class UserRegistrationDto {
     private String name;
