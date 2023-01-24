@@ -1,4 +1,4 @@
-# EduHub
+# EasyTask
 An online task scheduling calendar with Spring Boot
 
 ### Tech stack
